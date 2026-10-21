@@ -1,0 +1,227 @@
+/* ===========================================================================
+   Ryan Fillmore, MD
+   Client layer over the MegaOne "hospital" demo. Written for this site, not
+   copied from another client's override.
+
+   Colour, and why:
+     ink     deep indigo navy. A neurocritical care unit is a calm, low light
+             room; the site should not shout at somebody reading it at 3am.
+     signal  one clinical blue, used for anything the eye should find first.
+             It is darkened for small text on paper, because the bright value
+             is only legible at large sizes.
+     paper   cool white, not warm. This is a hospital, not a law office.
+   Every pair below was measured, not guessed. The lowest ratio on the page is
+   5.18 to 1, which clears AA for normal text.
+   =========================================================================== */
+:root{
+  --rf-ink:#101A2B;
+  --rf-ink-2:#18233C;
+  --rf-paper:#F6F8FA;
+  --rf-body:#36414F;
+  --rf-muted:#5E6A78;
+  --rf-line:#DDE3EA;
+  --rf-signal:#4AA3C7;        /* large text and icons, on ink */
+  --rf-signal-ink:#226B88;    /* small text, on paper: 5.59 to 1 */
+  --rf-signal-soft:#8ED3EA;
+  --rf-serif:"Playfair Display",Georgia,"Times New Roman",serif;
+  --rf-r:12px;
+  --rf-e1:0 1px 2px rgba(16,26,43,.06), 0 6px 18px rgba(16,26,43,.07);
+  --rf-e2:0 2px 6px rgba(16,26,43,.08), 0 16px 36px rgba(16,26,43,.12);
+  --rf-t:240ms cubic-bezier(.22,1,.36,1);
+}
+
+body{background:var(--rf-paper);color:var(--rf-body)}
+
+/* ---------- top bars ---------- */
+.upper-nav{background:var(--rf-ink);padding:9px 0}
+.upper-nav .top-text{color:#AAB6C4;font-size:13px;margin:0;letter-spacing:.02em}
+.rf-top-place{color:var(--rf-signal-soft);font-size:13px;font-weight:600;letter-spacing:.06em;text-transform:uppercase}
+.lower-nav,.lower-nav-style4{background:var(--rf-ink-2);box-shadow:0 1px 0 rgba(255,255,255,.06)}
+.lower-nav .navbar{padding:.35rem 0}
+.rf-wordmark{color:#fff;font-family:var(--rf-serif);font-size:23px;letter-spacing:-.01em;text-decoration:none}
+.rf-wordmark span{color:var(--rf-signal-soft);font-size:16px}
+.lower-nav .nav-link{color:#C3CCD8;font-size:14.5px;font-weight:500;padding:14px 0;margin-left:26px;
+  border-bottom:2px solid transparent;transition:color var(--rf-t),border-color var(--rf-t)}
+.lower-nav .nav-link:hover,.lower-nav .nav-link:focus-visible{color:#fff;border-bottom-color:var(--rf-signal)}
+.toggle-btn span{background:#fff}
+.broad{background:var(--rf-ink)}
+.broad .nav-link{color:#C3CCD8}
+.broad .nav-link:hover{color:var(--rf-signal-soft)}
+
+/* ---------- hero ---------- */
+.rf-hero{background:var(--rf-ink);position:relative;overflow:hidden;padding:96px 0 84px}
+.rf-hero::after{content:"";position:absolute;inset:0;pointer-events:none;
+  background:
+    radial-gradient(760px 520px at 12% 22%,rgba(74,163,199,.16) 0%,transparent 62%),
+    radial-gradient(620px 460px at 90% 80%,rgba(142,211,234,.09) 0%,transparent 64%)}
+.rf-hero .container{position:relative;z-index:1}
+.rf-eyebrow{color:var(--rf-signal-soft);font-size:12px;font-weight:700;letter-spacing:.22em;
+  text-transform:uppercase;margin-bottom:22px;display:flex;align-items:center;flex-wrap:wrap}
+.rf-dot{display:inline-block;width:4px;height:4px;border-radius:50%;background:var(--rf-signal);
+  margin:0 12px;flex:0 0 auto}
+.rf-hero-name{color:#fff;font-family:var(--rf-serif);font-weight:700;letter-spacing:-.025em;
+  line-height:1.04;font-size:clamp(2.4rem,5vw + .5rem,4.2rem);margin-bottom:22px}
+.rf-postnom{color:var(--rf-signal-soft);font-weight:400;font-size:.44em;letter-spacing:0}
+.rf-hero-lede{color:#C3CCD8;font-size:clamp(1rem,.5vw + .92rem,1.18rem);line-height:1.72;max-width:60ch;margin-bottom:14px}
+.rf-hero-sub{color:#94A2B3;font-size:16px;line-height:1.7;max-width:56ch;margin-bottom:34px}
+
+/* ---------- buttons ---------- */
+.rf-btn,.rf-btn-line{min-height:50px;display:inline-flex;align-items:center;justify-content:center;
+  padding:0 26px;font-size:15px;font-weight:700;letter-spacing:.01em;border-radius:var(--rf-r);
+  margin:0 12px 12px 0;transition:transform var(--rf-t),box-shadow var(--rf-t),background var(--rf-t),color var(--rf-t)}
+.rf-btn{background:var(--rf-signal);color:#06131C;border:1.5px solid var(--rf-signal)}
+.rf-btn:hover,.rf-btn:focus-visible{background:var(--rf-signal-soft);border-color:var(--rf-signal-soft);
+  color:#06131C;transform:translateY(-2px);box-shadow:var(--rf-e2)}
+.rf-btn-line{background:transparent;color:#fff;border:1.5px solid rgba(255,255,255,.4)}
+.rf-btn-line:hover,.rf-btn-line:focus-visible{border-color:#fff;background:rgba(255,255,255,.08);color:#fff;transform:translateY(-2px)}
+.rf-btn:active,.rf-btn-line:active{transform:translateY(0)}
+
+/* ---------- fact strip ---------- */
+.rf-strip{background:var(--rf-ink-2);padding:40px 0;border-top:1px solid rgba(255,255,255,.08)}
+.rf-strip .small-heading{color:var(--rf-signal-soft);font-family:var(--rf-serif);font-size:clamp(1.3rem,1.4vw + .9rem,1.7rem);
+  margin-bottom:10px;line-height:1.15}
+.rf-strip .small-text{color:#AAB6C4;font-size:14.5px;line-height:1.6;margin:0}
+.rf-strip .about-media{padding:14px 0}
+
+/* ---------- section shells ---------- */
+.about-sec,.team-sec,.rf-boards,.contact-sec{background:var(--rf-paper);padding:84px 0}
+.rf-roots,.rf-teaching{background:var(--rf-ink);padding:72px 0}
+.heading{font-family:var(--rf-serif);color:var(--rf-ink);font-weight:700;letter-spacing:-.02em;
+  line-height:1.12;font-size:clamp(1.7rem,2.3vw + .7rem,2.5rem);margin-bottom:16px}
+.heading .d-block{color:var(--rf-signal-ink);font-family:inherit;font-size:12.5px;font-weight:700;
+  letter-spacing:.2em;text-transform:uppercase;margin-bottom:12px}
+.about-sec .text{color:var(--rf-muted);font-size:16.5px;line-height:1.72;max-width:62ch;margin:0 auto 10px}
+
+/* ---------- practice cards ---------- */
+.about-media{padding:26px 22px}
+.about-sec .about-media{background:#fff;border:1px solid var(--rf-line);border-radius:var(--rf-r);
+  box-shadow:var(--rf-e1);margin-bottom:24px;text-align:left;
+  transition:transform var(--rf-t),box-shadow var(--rf-t),border-color var(--rf-t)}
+.about-sec .about-media:hover{transform:translateY(-4px);box-shadow:var(--rf-e2);border-color:rgba(74,163,199,.45)}
+.about-icon{display:inline-flex;align-items:center;justify-content:center;width:46px;height:46px;
+  border-radius:10px;background:rgba(74,163,199,.12);color:var(--rf-signal-ink);font-size:24px;margin-bottom:16px}
+.about-sec .small-heading{color:var(--rf-ink);font-family:var(--rf-serif);font-size:19px;font-weight:700;margin-bottom:10px}
+.ex-line{display:block;width:26px;height:2px;background:var(--rf-signal);margin-bottom:14px;border-radius:2px}
+.about-sec .small-text{color:var(--rf-muted);font-size:15px;line-height:1.66;margin:0}
+
+/* ---------- dark narrative bands ---------- */
+.rf-roots-kicker{color:var(--rf-signal-soft);font-size:12px;font-weight:700;letter-spacing:.2em;
+  text-transform:uppercase;margin-bottom:12px}
+.rf-roots-title{color:#fff;font-family:var(--rf-serif);font-weight:700;letter-spacing:-.02em;line-height:1.14;
+  font-size:clamp(1.45rem,1.8vw + .8rem,2.05rem);margin-bottom:18px}
+.rf-roots-text{color:#C3CCD8;font-size:16.5px;line-height:1.78;margin:0;max-width:68ch}
+
+/* ---------- training ---------- */
+.team-detail-sec{padding-right:28px}
+.rf-body{color:var(--rf-muted);font-size:16.5px;line-height:1.74;margin-bottom:16px}
+.rf-list-head{color:var(--rf-signal-ink);font-size:12.5px;font-weight:700;letter-spacing:.2em;
+  text-transform:uppercase;margin-bottom:20px}
+.rf-timeline{list-style:none;margin:0;padding:0;position:relative}
+.rf-timeline::before{content:"";position:absolute;left:7px;top:10px;bottom:10px;width:2px;background:var(--rf-line)}
+.rf-timeline li{position:relative;padding:0 0 26px 36px}
+.rf-timeline li::before{content:"";position:absolute;left:0;top:6px;width:16px;height:16px;border-radius:50%;
+  background:var(--rf-paper);border:3px solid var(--rf-signal)}
+.rf-timeline li:last-child{padding-bottom:0}
+.rf-when{display:block;color:var(--rf-signal-ink);font-size:12.5px;font-weight:700;letter-spacing:.14em;
+  text-transform:uppercase;margin-bottom:6px}
+.rf-what{display:block;color:var(--rf-ink);font-family:var(--rf-serif);font-size:18px;line-height:1.4}
+
+/* ---------- certification ---------- */
+.rf-board-grid{margin-top:34px}
+.rf-board{background:#fff;border:1px solid var(--rf-line);border-left:3px solid var(--rf-signal);
+  border-radius:var(--rf-r);padding:28px 26px;height:100%;margin-bottom:24px;box-shadow:var(--rf-e1)}
+.rf-board-body{color:var(--rf-ink);font-family:var(--rf-serif);font-size:clamp(1.15rem,1.1vw + .85rem,1.4rem);
+  line-height:1.34;margin-bottom:12px}
+.rf-board-by{color:var(--rf-muted);font-size:14px;letter-spacing:.04em;margin:0}
+
+/* ---------- contact ---------- */
+.rf-contact-grid{margin-top:34px}
+.rf-contact-card{background:#fff;border:1px solid var(--rf-line);border-radius:var(--rf-r);padding:30px 26px;
+  height:100%;margin-bottom:24px;box-shadow:var(--rf-e1);text-align:left}
+.rf-contact-card .small-heading{color:var(--rf-ink);font-family:var(--rf-serif);font-size:19px;font-weight:700;margin-bottom:10px}
+.rf-contact-card .small-text{color:var(--rf-muted);font-size:15.5px;line-height:1.7;margin:0}
+.contact-sec .text{color:var(--rf-muted);font-size:16px;line-height:1.7;max-width:60ch;margin:0 auto}
+
+/* ---------- footer ---------- */
+.footer{background:var(--rf-ink);padding:52px 0 44px}
+.rf-wordmark-light{color:#fff;font-family:var(--rf-serif);font-size:22px;text-decoration:none;
+  display:inline-block;margin-bottom:12px}
+.rf-wordmark-light:hover{color:var(--rf-signal-soft)}
+.rf-foot-item{color:#AAB6C4;font-size:14.5px;margin-bottom:18px}
+.rf-disclosure{color:#94A2B3;font-size:13px;line-height:1.7;max-width:72ch;margin:0 auto 18px}
+.rf-copy{color:#94A2B3;font-size:13px;margin:0}
+.rf-copy a{color:var(--rf-signal-soft);text-decoration:none;font-weight:600}
+.rf-copy a:hover{text-decoration:underline}
+
+/* ---------- focus, always visible ---------- */
+a:focus-visible,button:focus-visible,.nav-link:focus-visible{outline:2px solid var(--rf-signal);
+  outline-offset:3px;border-radius:6px}
+
+/* ---------- responsive ---------- */
+@media (max-width:991.98px){
+  .rf-hero{padding:72px 0 64px}
+  .team-detail-sec{padding-right:0;margin-bottom:34px}
+  .about-sec,.team-sec,.rf-boards,.contact-sec{padding:64px 0}
+  .rf-roots,.rf-teaching{padding:56px 0}
+  .rf-roots-kicker,.rf-roots-title{margin-top:0}
+  .rf-roots .col-12:first-child{margin-bottom:20px}
+}
+@media (max-width:575.98px){
+  .rf-hero{padding:56px 0 52px}
+  .rf-btn,.rf-btn-line{width:100%;margin-right:0}
+  .rf-eyebrow{font-size:11px;letter-spacing:.18em}
+  .rf-dot{margin:0 9px}
+  .about-media{padding:22px 18px}
+  .rf-timeline li{padding-left:30px}
+}
+
+/* ---------- motion off when the reader asks for it ---------- */
+@media (prefers-reduced-motion:reduce){
+  .rf-btn,.rf-btn-line,.about-sec .about-media,.lower-nav .nav-link{transition:none}
+  .rf-btn:hover,.rf-btn-line:hover,.about-sec .about-media:hover{transform:none}
+  .loader,.indicator{display:none!important}
+}
+
+/* ===========================================================================
+   Specificity corrections.
+   MegaOne's style.css paints .lower-nav and .navbar white, and Bootstrap sets
+   .navbar-brand to near black. Both beat the plain class selectors above, so
+   the header rendered white on white until it was measured. These are scoped
+   to header#top so they win without !important.
+   =========================================================================== */
+header#top .lower-nav,
+header#top .lower-nav-style4,
+header#top .navbar,
+header#top .navbar-light,
+header#top .main-nav{background:var(--rf-ink-2)}
+header#top .upper-nav{background:var(--rf-ink)}
+header#top .navbar-brand.rf-wordmark{color:#fff;display:inline-flex;align-items:center;min-height:48px}
+header#top .navbar-brand.rf-wordmark span{color:var(--rf-signal-soft)}
+header#top .navbar-brand.rf-wordmark:hover{color:var(--rf-signal-soft)}
+header#top .lower-nav .nav-link{display:inline-flex;align-items:center;min-height:48px;padding:0}
+
+/* the Line Awesome glyph is 51px wide at 24px, so the 46px box clipped it */
+.about-icon{width:52px;height:52px;font-size:22px;overflow:visible}
+
+/* footer links were 25px and 18px tall */
+.rf-wordmark-light{display:inline-flex;align-items:center;min-height:48px}
+.rf-copy a{display:inline-flex;align-items:center;min-height:44px}
+
+/* Bootstrap's .navbar-light .navbar-nav .nav-link is a 3 class selector and
+   paints the links near black. On an ink header that measured 1.13 to 1. */
+header#top .navbar-light .navbar-nav .nav-link,
+header#top .broad .navbar-nav .nav-link{color:#C3CCD8}
+header#top .navbar-light .navbar-nav .nav-link:hover,
+header#top .navbar-light .navbar-nav .nav-link:focus-visible{color:#fff}
+header#top .broad .navbar-nav .nav-link:hover{color:var(--rf-signal-soft)}
+
+/* MegaOne declares h1.main-font, two parts to my one, so the display face
+   never reached the hero name until this was scoped to match. */
+.rf-hero h1.rf-hero-name{font-family:var(--rf-serif)}
+.rf-hero{padding:84px 0 72px}
+
+/* .team-sec .heading-area .heading is three parts in MegaOne, so the training
+   heading was still rendering in Raleway while every other heading was not. */
+.team-sec .heading-area .heading,
+.team-sec .heading-area .heading .d-block{font-family:var(--rf-serif)}
+.team-sec .heading-area .heading .d-block{font-size:12.5px;letter-spacing:.2em}
