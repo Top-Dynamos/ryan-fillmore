@@ -52,13 +52,15 @@
   <div class="upper-nav">
     <div class="container">
       <div class="row">
-        <div class="col-12 col-lg-6 mt-auto mb-auto">
+        <div class="col-12 col-lg-6 mt-auto mb-auto d-none d-lg-block">
           <p class="top-text">Neurocritical care, stroke and epilepsy</p>
         </div>
         <div class="col-12 col-lg-6 mt-auto mb-auto">
-          <ul class="top-detail d-block d-lg-flex justify-content-end">
-            <li class="d-none d-lg-block"><span class="rf-top-place">Charlotte, North Carolina</span></li>
+          <ul class="top-detail d-none d-lg-flex justify-content-end">
+            <li><span class="rf-top-place">Charlotte, North Carolina</span></li>
           </ul>
+          <a class="navbar-brand scroll rf-wordmark-mob d-inline-block d-lg-none" href="#top">Ryan Fillmore<span>, MD</span></a>
+          <div class="toggle-btn d-block d-lg-none" role="button" tabindex="0" aria-label="Open the menu" aria-controls="rf-menu" aria-expanded="false"><span></span><span></span><span></span></div>
         </div>
       </div>
     </div>
@@ -66,7 +68,6 @@
 
   <div class="lower-nav lower-nav-style4">
     <div class="container">
-      <div class="toggle-btn d-block d-lg-none"><span></span><span></span><span></span></div>
       <nav class="navbar navbar-expand-lg navbar-light d-none d-lg-block">
         <div class="main-nav collapse navbar-collapse d-flex">
           <a class="navbar-brand scroll rf-wordmark" href="#top">Ryan Fillmore<span>, MD</span></a>
@@ -83,10 +84,10 @@
     </div>
   </div>
 
-  <div class="broad">
-    <div class="close-nav"><a id="close_side_menu" class="close_side_menu" href="#"><i class="las la-times"></i></a></div>
-    <nav class="navbar navbar-light">
-      <div class="main-nav collapse navbar-collapse d-flex">
+  <div class="broad" id="rf-menu">
+    <div class="close-nav" role="button" tabindex="0" aria-label="Close the menu"><i class="las la-times"></i></div>
+    <nav class="navbar navbar-light" aria-label="Site">
+      <div class="main-nav collapse navbar-collapse d-flex justify-content-center align-items-center">
         <ul class="navbar-nav text-center">
           <li class="nav-item"><a class="nav-link scroll" href="#home">Home</a></li>
           <li class="nav-item"><a class="nav-link scroll" href="#about-sec">Practice</a></li>
@@ -98,6 +99,7 @@
       </div>
     </nav>
   </div>
+  <a id="close_side_menu" class="close_side_menu" href="javascript:void(0);" aria-hidden="true" tabindex="-1"></a>
 </header>
 
 <section id="home" class="section p-0">
