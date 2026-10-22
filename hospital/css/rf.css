@@ -328,3 +328,127 @@ header#top .broad .navbar-nav .nav-link:hover{color:var(--rf-signal-soft)}
 @media (max-width:767.98px){
   .rf-band-img{aspect-ratio:4/3;object-fit:cover;object-position:72% center}
 }
+
+/* ===================================================================
+   MOBILE. Measured against the untouched hospital demo served locally,
+   where the menu button is 25x15 at the top right and opens the panel.
+   On this build it measured 0 by 0, because the button had been moved
+   into .lower-nav, which the template collapses to zero height under
+   992px. It now sits in .upper-nav, where the template styles it.
+   =================================================================== */
+
+/* The template paints the bars #2d2d2d, which is invisible on an ink
+   header, and gives the button a 25x15 hit area. Both fixed here. */
+header#top .upper-nav .toggle-btn{
+  right:15px;top:50%;transform:translateY(-50%);
+  width:44px;height:44px;display:flex;flex-direction:column;
+  justify-content:center;align-items:flex-end;gap:5px;
+  padding:0;border-radius:8px}
+header#top .upper-nav .toggle-btn span{
+  background-color:#fff;height:2px;width:25px;margin:0;display:block;border-radius:2px}
+header#top .upper-nav .toggle-btn:hover span:first-child,
+header#top .upper-nav .toggle-btn:hover span:last-child{width:18px}
+header#top .upper-nav .toggle-btn:hover span:nth-child(2){width:30px;background-color:var(--rf-signal-soft)}
+header#top .upper-nav .toggle-btn:focus-visible{outline:2px solid var(--rf-signal-soft);outline-offset:2px}
+
+/* The template's mobile header is a logo image. This site has no logo
+   image, so the wordmark is type, and it was simply absent on phones. */
+header#top .upper-nav .rf-wordmark-mob{
+  color:#fff;font-family:var(--rf-serif);font-size:20px;line-height:1;
+  padding:12px 0;min-height:44px;display:inline-flex;align-items:center}
+header#top .upper-nav .rf-wordmark-mob span{color:var(--rf-signal-soft);font-size:13px;letter-spacing:.04em}
+header#top .upper-nav .rf-wordmark-mob:hover,
+header#top .upper-nav .rf-wordmark-mob:focus-visible{color:var(--rf-signal-soft)}
+@media (max-width:991.98px){
+  header#top .upper-nav{padding-top:10px;padding-bottom:10px;background-color:var(--rf-ink-2)}
+}
+
+/* The slide out panel ships white with near black links. On this site
+   that flashed white over an ink page, so it takes the ink palette. */
+header .broad-nav{background-color:var(--rf-ink)}
+header .broad-nav .navbar .nav-item .nav-link{color:#E6ECF3;font-family:var(--rf-serif);
+  font-size:22px;padding:14px 10px;min-height:48px;display:flex;align-items:center;justify-content:center}
+header .broad-nav .navbar .nav-link:focus,
+header .broad-nav .navbar .nav-link:hover,
+header .broad-nav .navbar .nav-link.active{color:var(--rf-signal-soft)}
+header .broad-nav .navbar .nav-item:after{background-color:rgba(255,255,255,.12)}
+header .broad-nav .close-nav{width:48px;height:48px;display:flex;align-items:center;justify-content:center}
+header .broad-nav .close-nav i{color:#E6ECF3;font-size:28px}
+header .broad-nav .close-nav:hover i{color:var(--rf-signal-soft)}
+header .broad-nav .close-nav:focus-visible{outline:2px solid var(--rf-signal-soft);outline-offset:2px}
+#close_side_menu{background-color:rgba(10,17,28,.6)}
+
+/* .author-skills is position:absolute;bottom:0 in the template, so under
+   992px the strip was painted straight over the hero portrait. Below 992px
+   it flows in the document instead. Above it the absolute placement stays:
+   making it static there opened a 213px hole under the hero buttons. */
+@media (max-width:991.98px){
+  .rf-strip{position:static}
+}
+
+/* The header is position:relative, so the nav scrolled away and never
+   came back. Sticky keeps it reachable without covering the hero. */
+@media (max-width:991.98px){
+  header#top{position:sticky;top:0}
+}
+
+/* 103x17 is below the 44px minimum for a tap target. */
+.rf-illus a{display:inline-flex;align-items:center;min-height:44px;padding:0 4px}
+.rf-illus{margin-top:2px}
+
+/* Bootstrap's .d-block sets display:block !important, which beat the flex
+   column and stacked the three bars on top of each other: they measured
+   y=10, 12, 14 and read as one thick dash. Hence the !important here, and
+   the media query, because unscoped it also beat .d-lg-none and painted the
+   bars over "Charlotte, North Carolina" on desktop. */
+@media (max-width:991.98px){
+  header#top .upper-nav .toggle-btn.d-block{display:flex!important}
+}
+
+/* .upper-nav is text-align:center in the template, which put the wordmark
+   under the menu button. On phones the row reads wordmark left, button right. */
+@media (max-width:991.98px){
+  header#top .upper-nav .row > div:last-child{text-align:left}
+  header#top .upper-nav .rf-wordmark-mob{margin-left:0;padding-left:0}
+}
+
+/* Phone scroll was 10,179px at 390px. The content is not the problem, the
+   chrome is: ten sections at 56 to 92px of padding top and bottom. Trimmed
+   on phones only, which is worth roughly a screen and a half of scrolling. */
+@media (max-width:767.98px){
+  .rf-hero{padding:48px 0 40px}
+  .rf-portrait{max-width:190px}
+  .rf-strip{padding:28px 0}
+  .rf-strip .about-media{padding:10px 0}
+  .about-sec{padding:48px 0}
+  .rf-roots,#teaching{padding:44px 0}
+  .team-sec{padding:48px 0}
+  .rf-boards{padding:48px 0}
+  .rf-gallery-sec{padding:48px 0 52px}
+  .contact-sec{padding:48px 0}
+}
+
+/* Above 992px the strip stays absolute at the hero's foot, 213px tall, so
+   anything in the hero below that line is painted over. The portrait
+   caption's bottom measured 704px against a strip top of 687px. The hero
+   reserves the strip's height instead of guessing at it. */
+@media (min-width:992px){
+  /* .slider-area is height:100vh in the template. With the strip pinned to
+     the hero's foot that left the content boxed into 531px, so it overflowed
+     its own padding and the eyebrow ran up under the nav with 11px to spare.
+     Height follows content here, and the foot reserves the strip outright. */
+  /* header#top is position:absolute in this template and overlays the hero,
+     so 96px of top padding put the eyebrow at y=96 under a header that ends
+     at y=104. The hero clears the header plus breathing room. */
+  .rf-hero{height:auto;min-height:0;padding-top:160px;padding-bottom:calc(213px + 56px)}
+}
+
+/* Six labels sat at 12 to 12.5px. They are letter-spaced uppercase, so they
+   read, but 13px is the floor worth holding on a phone. */
+@media (max-width:767.98px){
+  .rf-postnom,.rf-illus,.rf-illus a,.rf-roots-kicker,
+  .rf-list-head,.rf-when,.heading .d-block{font-size:13px}
+}
+@media (max-width:767.98px){
+  .team-sec .heading-area .heading .d-block{font-size:13px}
+}
